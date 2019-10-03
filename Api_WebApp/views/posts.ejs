@@ -1,0 +1,8 @@
+<% include partials/header %>
+        <h2>This is the 1 page of the exercise</h2>
+        
+        <% posts.forEach(function(post){ %>
+            <li> <%= post.name %> - <strong><%= post.author%></strong> </li>
+        <% }) %>
+
+<% include partials/footer %>

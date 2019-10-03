@@ -1,0 +1,20 @@
+<h3>The weather of <strong><%= data.name%></strong></h3>
+
+<ul>
+    <li>the mian parameters
+        <ol>
+            <li>temperature: <%= data.main.temp%></li>
+            <li>air pressure: <%= data.main.pressure%> hpa</li>
+            <li>humidity: <%= data.main.humidity%>%</li>
+        </ol>
+    </li>
+</ul>
+
+<ul>
+    <li>air fluency params
+        <ol>
+            <li><%= data.wind.speed%></li>
+            <li><%= data.visibility%></li>
+        </ol>
+    </li>
+</ul>
