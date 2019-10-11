@@ -1,0 +1,40 @@
+<% include ../partials/header %>
+
+        <header class="jumbotron">
+            <img src="http://www.ia.cas.cn/images/logo_ia_2016.png">
+            <!--<h4>Welcome to our campgrounds</h4>-->
+            
+            <div>
+                <p>
+                    实时高性能计算体系架构设计、智能计算、处理器及编译开发工具设计<br>
+                    design and implementation of the <em>real-time & high-performance computing architecture</em>, the <em>Intellegent Computation</em>, <em>Processer</em> as well as the <strogn>tools for compiling and developing</strogn>.
+                </p>
+                <p>
+                    <a class="btn btn-primary btn-lg" href="/campgrounds/new">add a new campground</a>
+                    
+                </p>
+            </div>
+        </header>
+        
+        <div class="row">
+            <% campgrounds.forEach(function(campground){ %>
+                <div class="col-md-3 col-sm-6">
+                    <!--<h4><%= campground.name %></h4>-->
+                    <figure>
+                        <a href="/campgrounds/<%= campground._id %>">
+                            <img src="<%= campground.image %>" class="img-thumbnail">
+                        </a>
+                        <figcaption class="figure-caption text-right"><%= campground.name %>
+                            <p>
+                                <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary btn-sm">More Info</a>
+                            </p>
+                        </figcaption>
+                    </figure>
+                </div>
+            <% }) %>
+        </div>
+            
+    </div>
+        
+
+<% include ../partials/footer %>
