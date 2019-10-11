@@ -1,0 +1,96 @@
+<% include ../partials/header %>
+
+    <!-- div for class=row-->
+    <div class="row">
+        <!-- div for the campground sidebar -->
+        <div class="col-md-3">
+            <p class="lead">Yelpcamp</p>
+            
+            <ul class="list-group">
+                <li class="list-group-item active">Info 1</li>    
+                <li class="list-group-item">Info 2</li>    
+                <li class="list-group-item">Info 3</li>    
+            </ul>
+        </div>
+        
+        <div class="col-md-9">
+            <!--figure infomation-->
+            <div>
+                <div>
+                    <figure class="showPic">
+                        <!--image: figure-->
+                        <img  class="rounded mx-auto d-block" alt="Responsive image" src="<%= campground.image %>">
+                        
+                    </figure>
+                    
+                </div>
+                
+                <div class="caption-full">
+                    <!--caption:price and link-->
+                    <figcaption class="figure-caption">
+                        <h5>
+                            <!--name of t  he figure-->
+                            <a class="d-inline" href="#"><%= campground.name %></a>
+                            <!--price-->
+                            <p  class="d-inline float-right"><em>$<%= campground.price %>/night</em></p>
+                        </h5>
+                    </figcaption>
+                    
+                    <p><%= campground.description %></p>
+                    <p>
+                        <em>Submitted By <strong><%= campground.author.username %></strong></em>
+                    </p>
+                    
+                    <!-- edit permission part-->
+                    <% if(currentUser && currentUser._id.equals(campground.author.id)){ %>
+                        <a href="/campgrounds/<%= campground._id %>/edit" class="btn btn-sm btn-warning">Edit</a>
+                        
+                        <form class="d-inline" action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
+                            <input type="submit" class="btn btn-sm btn-danger" value="Delete">
+                        </form>
+                    <% } %>
+                </div>
+            </div>
+            
+            <!-- comment partition-->
+            <div class="well">
+                <div class="row">
+                    <div class="col-md-12">
+                        <a class="btn btn-info btn-sm float-right" href="/campgrounds">Back to List</a>
+                        <a class="btn btn-success btn-sm float-right" href="/campgrounds/<%= campground._id %>/comments/new">Add New Comment</a>
+                    </div>
+                </div>
+                
+                <hr>
+                
+                <% campground.comments.forEach(function(comment){ %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong><%= comment.author.username %></strong>
+                            <span class="float-right">
+                                <%= comment._id.getTimestamp() %>
+                            </span>
+                        </div>
+                    </div>
+                    <p><%= comment.text %></p>
+                    
+                    <% if(currentUser && currentUser._id.equals(comment.author.id)){ %>
+                        <a href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit" class="btn btn-warning btn-sm">Edit</a>
+                        
+                        <form class="d-inline" action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                            <input type="submit" class="btn btn-danger btn-sm" value="Delete">
+                        </form>
+                    <% } %>
+                    
+                    <hr>
+                    
+                <% }) %>
+                
+                
+            </div>
+        </div>
+    </div>
+        <!-- div 9 for the show image area -->
+</div>
+
+<% include ../partials/footer %>

@@ -1,0 +1,70 @@
+<% include ../partials/header %>
+
+        <header class="jumbotron">
+            <!-- program introduction -->
+            <div class="row">
+                <!-- program pic -->
+                    <div class="col-md-4">
+                        <img src="https://i.udemycdn.com/course/480x270/625204_436a_2.jpg" width="445" height="280">
+                    </div>
+                <!-- intro para-->
+                    <div class="col-md-8">
+                        <div class="card">
+                          <div class="card-body">
+                            <h5 class="card-title">Project Intro</h5>
+                            <p class="card-text">
+                                Hi! Welcome to <em>MY Web Developer Bootcamp Assignment</em>. It is without a doubt the most comprehensive and effective. Throughout the course I have covered tons of tools and technologies including:
+                                <ul>
+                                    <li><em>HTML5, CSS3, JavaScript, jQuery</em> <strong>- Bootstrap.4</strong></li>
+                                    <li><em>NodeJS</em> - <strong>Express 4x</strong></li>
+                                    <li><em>MongoDB</em> - <strong>Database Associations, Authorization Verification</strong></li>
+                                    <li><em>PassportJS</em> - <strong>Authentication</strong></li>
+                                    <li><em>RESTful routes</em>...</li>
+                                </ul>
+                            </p>
+                            
+                          </div>
+                        </div>                        
+                    </div>
+            </div>
+            
+            <!--<h4>Welcome to our campgrounds</h4>-->
+            <!-- program overview-->
+            <h3 style="margin-top: 50px" class="text-danger">Overview</h3>
+            <div>
+                <p>
+                    The computer equips students across disciplines with the knowledge and practical skills they need
+                    to transition into computer science. I would like to receive rigorous academic bridge courses that 
+                    prepare me for the future challenges and opportunities. Meanwhile, the real-world work experience
+                    through co-op or internship can help me convert knowledge to practice.
+                </p>
+            </div>
+        </header>
+        
+        <div class="row">
+            <% campgrounds.forEach(function(campground){ %>
+                <div class="col-md-3 col-sm-6">
+                    <!--<h4><%= campground.name %></h4>-->
+                    <figure>
+                        <a href="/campgrounds/<%= campground._id %>">
+                            <img src="<%= campground.image %>" class="img-thumbnail">
+                        </a>
+                        <figcaption class="figure-caption text-right"><%= campground.name %>
+                            <p>
+                                <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary btn-sm">More Info</a>
+                            </p>
+                        </figcaption>
+                    </figure>
+                </div>
+            <% }) %>
+        </div>
+        
+        <div>
+            <div class="d-flex justify-content-center">
+                <a class="btn btn-secondary btn-lg" href="/campgrounds/new">add a new campground</a>
+            </div>
+        </div>   
+    </div>
+        
+
+<% include ../partials/footer %>
